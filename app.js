@@ -7,4 +7,19 @@
 
 ///////////////////////////////////
 
-require("./async-pattern")
+require("./http-server")
+
+// const { createReadStream } = require("fs")
+
+// const stream = createReadStream("./content/big.txt", {
+//   highWaterMark: 9000,
+//   // encoding: "utf8",
+// })
+
+// stream.on("data", (result) => {
+//   console.log(result)
+// })
+
+// stream.on("errro", (err) => {
+//   console.log(err)
+// })
