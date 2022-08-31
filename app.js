@@ -1,6 +1,8 @@
-const names = require("./names")
-const printName = require("./utils")
-require("./funtion")
+// const names = require("./names")
+// const printName = require("./utils")
+// require("./funtion")
 
 // printName(names.john)
 // printName(names.peter)
+
+///////////////////////////////////
