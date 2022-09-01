@@ -1,23 +1,37 @@
 const express = require("express")
 const app = express()
 
-// req => middleware => res
+const { people } = require("./data")
 
-const logger = (req, res, next) => {
-  const method = req.method
-  const url = req.url
-  const time = new Date().getFullYear()
-  // res.send('Testing')
-  console.log(method, url, time)
-  next()
-}
+app.use(express.static("./methods-public"))
 
-app.get("/", logger, (req, res) => {
-  res.send("Home")
+//parse form data
+app.use(express.urlencoded({ extended: true }))
+
+//parse json
+
+app.use(express.json())
+
+app.get("/api/people", (req, res) => {
+  res.status(200).json({ success: true, data: people })
 })
 
-app.get("/about", logger, (req, res) => {
-  res.send("About")
+app.post("/api/people", (req, res) => {
+  const { name } = req.body
+  if (!name) {
+    return res
+      .status(400)
+      .json({ success: false, msg: "please provide name value" })
+  }
+  res.status(201).send({ success: true, person: name })
+})
+
+app.post("/login", (req, res) => {
+  const { name } = req.body
+  if (name) {
+    return res.status(200).send(`Welcome ${name}`)
+  }
+  res.status(401).send("Please Provide Credentials")
 })
 
 app.listen(5000, () => {
